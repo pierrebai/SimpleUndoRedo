@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SimpleUndoRedo/v15
+/Debug
+/SimpleUndoRedo/Debug
+*.user
+/UndoRedoTests/Debug
+/Release
+/SimpleUndoRedo/Release
+/UndoRedoTests/Release

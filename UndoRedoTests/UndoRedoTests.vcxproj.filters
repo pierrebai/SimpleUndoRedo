@@ -18,8 +18,5 @@
     <ClCompile Include="undo_stack_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\SimpleUndoRedo\undo_stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

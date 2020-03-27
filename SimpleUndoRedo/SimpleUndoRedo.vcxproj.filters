@@ -15,16 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SimpleUndoRedo.cpp">
+    <ClCompile Include="simple_undo_redo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="undo_stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="undo_stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

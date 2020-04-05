@@ -53,8 +53,12 @@ namespace dak
       {
       public:
          // The transaction data type and list of all undo transactions.
+         typedef undo_data simple_transaction;
          typedef std::vector<undo_data> transaction;
          typedef std::vector<transaction> transactions;
+
+         // The function called when the undo stack changed (clear, undo or redo called).
+         std::function<void(undo_stack&)> changed;
 
          // Create an empty undo stack.
          undo_stack();
@@ -65,6 +69,7 @@ namespace dak
          // Commit the given modified data to the undo stack.
          // Deaden the transaction data.
          void commit(const transaction& tr);
+         void simple_commit(const simple_transaction& tr);
 
          // Undo awakens the previous transaction data. (The one before the last commit.)
          // Does nothing if at the start of the undo stack.
@@ -75,13 +80,16 @@ namespace dak
          void redo();
 
          // Verify if there is anything to undo.
-         bool has_undo() const { return top != undos.begin(); }
+         bool has_undo() const { return _top != _undos.begin(); }
 
          // Verify if there is anything to redo.
-         bool has_redo() const { return top != undos.end() && top != undos.end() - 1; }
+         bool has_redo() const { return _top != _undos.end() && _top != _undos.end() - 1; }
+
+         // Verify if an commit/undo/redo operation is underway.
+         bool is_undoing() const { return _is_undoing; }
 
          // Return the current full contents of the undo stack.
-         const transactions& contents() const { return undos; }
+         const transactions& contents() const { return _undos; }
 
       private:
          // Deaden the current top transaction data.
@@ -90,8 +98,9 @@ namespace dak
          // Awaken the current top transaction data.
          void awaken_top() const;
 
-         transactions undos;
-         transactions::iterator top;
+         transactions _undos;
+         transactions::iterator _top;
+         bool _is_undoing = false;
       };
    }
 }
